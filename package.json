@@ -1,0 +1,14 @@
+{
+  "name": "my-ai-story",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace frontend\" \"npm run start --workspace backend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
