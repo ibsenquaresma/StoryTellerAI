@@ -9,12 +9,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
+    "@elevenlabs/elevenlabs-js": "^2.13.0",
     "axios": "^1.11.0",
+    "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "groq-sdk": "^0.30.0",
+    "node-fetch": "^2.7.0",
     "uuid": "^11.1.0"
   }
 }
