@@ -1,0 +1,38 @@
+{
+  "english": {
+    "prompt": "You are a helpful assistant. Always respond in English.",
+    "voiceId": "EXAVITQu4vr4xnSDxMaL" 
+  },
+  "portuguese": {
+    "prompt": "Você é um assistente útil. Responda sempre em português.",
+    "voiceId": "pFZP5JQG7iQjL5jv04Zw"
+  },
+  "spanish": {
+    "prompt": "Eres un asistente útil. Responde siempre en español.",
+    "voiceId": "TxGEqnHWrfWFTfGW9XjX"
+  },
+  "french": {
+    "prompt": "Vous êtes un assistant utile. Répondez toujours en français.",
+    "voiceId": "VBq9fQjj8wE6kUJ9gY5d"
+  },
+  "german": {
+    "prompt": "Sie sind ein hilfreicher Assistent. Antworten Sie immer auf Deutsch.",
+    "voiceId": "N2lVS1w4EtoT3dr4eOWO"
+  },
+  "italian": {
+    "prompt": "Sei un assistente utile. Rispondi sempre in italiano.",
+    "voiceId": "zcAOhNBS3c14rBihAFp1"
+  },
+  "japanese": {
+    "prompt": "あなたは役立つアシスタントです。常に日本語で答えてください。",
+    "voiceId": "JBFqnCBsd6RMkjVDRZzb"
+  },
+  "chinese": {
+    "prompt": "你是一个有用的助手。请始终用中文回答。",
+    "voiceId": "CYw3kZ02Hs0563khs1Fj"
+  },
+  "klingon": {
+    "prompt": "SoH 'oH ghotvam'e' Qapchu' ghot. HochDaq tlhIngan Hol vIjatlh.",
+    "voiceId": "K6v3vYk5b4b3b4b3b4b3"
+  }
+}

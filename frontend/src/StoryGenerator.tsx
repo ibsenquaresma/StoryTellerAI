@@ -1,5 +1,7 @@
 // Import React and hooks for managing state and refs
 import React, { useState, useRef } from "react";
+// Import languages list from JSON file
+import languages from "../src/config/languages.json";
 
 // Define the functional component
 const StoryGenerator: React.FC = () => {
@@ -9,8 +11,8 @@ const StoryGenerator: React.FC = () => {
   // State to hold the generated story
   const [story, setStory] = useState<string>("");
 
-  // State to hold the selected language (default: Portuguese)
-  const [language, setLanguage] = useState<string>("pt");
+  // State to hold the selected language (default: English)
+  const [language, setLanguage] = useState<string>("english");
 
   // State to show loading spinner while story is being generated
   const [loadingStory, setLoadingStory] = useState<boolean>(false);
@@ -47,16 +49,15 @@ const StoryGenerator: React.FC = () => {
       const data = await res.json();
 
       if (data.story) {
-        // If story exists, update state with story text
         setStory(`${data.story}`);
       } else {
-        setStory(""); // Otherwise keep it empty
+        setStory("");
       }
     } catch (err) {
-      console.error("Error:", err); // Log errors
+      console.error("Error:", err);
       setStory("");
     } finally {
-      setLoadingStory(false); // Stop loading spinner
+      setLoadingStory(false);
     }
   };
 
@@ -64,41 +65,32 @@ const StoryGenerator: React.FC = () => {
   // Function: Play generated audio
   // ---------------------------
   const playAudio = async () => {
-    if (!story) return; // Do nothing if there’s no story
-    setLoadingAudio(true);  // Show loading spinner
-    setAudioUrl(null);      // Reset previous audio
+    if (!story) return;
+    setLoadingAudio(true);
+    setAudioUrl(null);
 
     try {
-      // Remove any "Language:" line before sending to audio API
       const textForAudio = story.replace(/^Idioma:.*\n\n/, "");
 
-      // Send POST request to audio API
       const res = await fetch("http://localhost:4000/api/story/audio", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          text: textForAudio,  // Story text to convert
-        }),
+        body: JSON.stringify({ text: textForAudio }),
       });
 
-      // If request failed, throw error
-      if (!res.ok) {
-        throw new Error("Error generating audio");
-      }
+      if (!res.ok) throw new Error("Error generating audio");
 
-      // Convert response into audio file (Blob)
       const blob = await res.blob();
-      const url = URL.createObjectURL(blob); // Create temporary URL
-      setAudioUrl(url); // Save it to state
+      const url = URL.createObjectURL(blob);
+      setAudioUrl(url);
 
-      // Play audio automatically after small delay
       setTimeout(() => {
         if (audioRef.current) audioRef.current.play();
       }, 200);
     } catch (err) {
       console.error("Error:", err);
     } finally {
-      setLoadingAudio(false); // Stop spinner
+      setLoadingAudio(false);
     }
   };
 
@@ -107,7 +99,6 @@ const StoryGenerator: React.FC = () => {
   // ---------------------------
   return (
     <div className="p-6 max-w-xl mx-auto">
-      {/* Title */}
       <h1 className="text-2xl font-bold mb-4">Story Generator 🎭</h1>
 
       {/* Textarea for user prompt */}
@@ -119,7 +110,7 @@ const StoryGenerator: React.FC = () => {
         onChange={(e) => setPrompt(e.target.value)}
       />
 
-      {/* Language selector */}
+      {/* Language selector from JSON file */}
       <div className="mb-2">
         <label className="mr-2 font-medium">Language:</label>
         <select
@@ -127,14 +118,11 @@ const StoryGenerator: React.FC = () => {
           onChange={(e) => setLanguage(e.target.value)}
           className="border p-2 rounded"
         >
-          <option value="english">English</option>
-          <option value="portuguese">Portuguese</option>
-          <option value="spanish">Spanish</option>
-          <option value="french">French</option>
-          <option value="german">German</option>
-          <option value="italian">Italian</option>
-          <option value="japanese">Japanese</option>
-          <option value="chinese">Chinese</option>
+          {languages.map((lang) => (
+            <option key={lang.value} value={lang.value}>
+              {lang.label}
+            </option>
+          ))}
         </select>
       </div>
 
@@ -147,7 +135,7 @@ const StoryGenerator: React.FC = () => {
         {loadingStory ? "Generating..." : "Generate Story"}
       </button>
 
-      {/* Story textarea (editable) */}
+      {/* Story textarea */}
       <div className="mt-4">
         <textarea
           className="w-full border p-2 rounded"
@@ -166,7 +154,6 @@ const StoryGenerator: React.FC = () => {
         >
           {loadingAudio ? (
             <span className="flex items-center">
-              {/* Spinner animation while loading audio */}
               <svg
                 className="animate-spin mr-2 h-5 w-5 text-white"
                 xmlns="http://www.w3.org/2000/svg"
@@ -195,7 +182,7 @@ const StoryGenerator: React.FC = () => {
         </button>
       </div>
 
-      {/* Audio player appears when audio is ready */}
+      {/* Audio player */}
       {audioUrl && (
         <div className="mt-4">
           <audio ref={audioRef} controls src={audioUrl} />
@@ -205,5 +192,4 @@ const StoryGenerator: React.FC = () => {
   );
 };
 
-// Export the component
 export default StoryGenerator;

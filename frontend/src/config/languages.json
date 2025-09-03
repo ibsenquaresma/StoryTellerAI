@@ -1,0 +1,11 @@
+[
+  { "value": "english", "label": "English" },
+  { "value": "portuguese", "label": "Portuguese" },
+  { "value": "spanish", "label": "Spanish" },
+  { "value": "french", "label": "French" },
+  { "value": "german", "label": "German" },
+  { "value": "italian", "label": "Italian" },
+  { "value": "japanese", "label": "Japanese" },
+  { "value": "chinese", "label": "Chinese" },
+  { "value": "klingon", "label": "Klingon" }
+]
