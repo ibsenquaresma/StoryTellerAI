@@ -70,7 +70,7 @@ app.post("/api/story", async (req, res) => {
 
     // Call Groq API to generate a story
     const groqResponse = await fetch(
-      "https://api.groq.com/openai/v1/chat/completions",
+      `${process.env.GROQ_END_API}`, // Groq API endpoint from .env
       {
         method: "POST",
         headers: {
@@ -78,7 +78,7 @@ app.post("/api/story", async (req, res) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "llama-3.1-8b-instant", // Chosen model
+          model: `${process.env.GROQ_MODEL}`, // Chosen model
           messages: [
             { role: "system", content: fullSystemPrompt }, // Instruction for the AI
             { role: "user", content: fullUserPrompt },     // User’s request

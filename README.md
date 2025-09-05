@@ -48,7 +48,8 @@ npm install @elevenlabs/elevenlabs-js node-fetch dotenv cors
 PORT=4000
 GROQ_API_KEY=your_groq_api_key_here
 ELEVEN_API_KEY=your_elevenlabs_api_key_here
-VOICE_ID=your_voice_id_here
+GROQ_END_API=https://api.groq.com/openai/v1/chat/completions
+GROQ_MODEL=llama-3.1-8b-instant
 ```
 
 5. Running the project
