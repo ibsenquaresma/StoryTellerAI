@@ -67,15 +67,15 @@ GROQ_MODEL=llama-3.1-8b-instant
 Request body (JSON):
 
 {
-  "prompt": "Write a story about friendship between animals.",
-  "language": "en"
+  "prompt": "Tell me a story about a warrior in space.",
+  "language": "klingon"
 }
 ````
 ```
 Response:
 
 {
-  "story": "Once upon a time, a rabbit and a turtle became friends..."
+  "klingon": "You are a helpful assistant. Always respond in Klingon language (tlhIngan Hol)."
 }
 ```
 
@@ -88,7 +88,7 @@ Response:
 Request body (JSON):
 
 {
-  "text": "Once upon a time, a rabbit and a turtle became friends..."
+  "text": "Qapla'! tlhIngan maH." 
 }
 ```
 ```
